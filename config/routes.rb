@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :products
+  end
   devise_for :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  unauthenticated :admin do
-    root to: "devise/sessions#new", as: :unauthenticated_root
-  end
+  
+  # devise_scope :admin do
+  #   root to: "devise/sessions#new"
+  # end
 
-  authenticated :admin do
-    root to: "home#index", as: :admin_root
-  end
+  root to: 'home#index'
+  
 
-  get 'home' => 'home#index'
+  get 'home', to: 'home#index'
 end

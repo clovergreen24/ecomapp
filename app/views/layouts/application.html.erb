@@ -9,16 +9,22 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application' %>
+
   </head>
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
+    <% if admin_signed_in? %>
       <nav class="w-1/4">
         <ul>
           <li> <%= link_to "Home", home_path %> </li>
-          <li> <%= link_to "Products", home_path %> </li>
+          <li> <%= link_to "Products", admin_products_path %> </li>
           <li> <%= link_to "Orders", home_path %> </li>
+          <%= button_to "Logout", destroy_admin_session_path, method: :delete  %>
         </ul>
+      </nav>
+    <% end %>
       <%= yield %>
     </main>
   </body>
