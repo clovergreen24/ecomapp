@@ -14,18 +14,12 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-    <% if admin_signed_in? %>
-      <nav class="w-1/4">
-        <ul>
-          <li> <%= link_to "Home", home_path %> </li>
-          <li> <%= link_to "Products", admin_products_path %> </li>
-          <li> <%= link_to "Orders", home_path %> </li>
-          <%= button_to "Logout", destroy_admin_session_path, method: :delete  %>
-        </ul>
-      </nav>
+  <% if admin_signed_in? %>
+      <%= render "layouts/navbar"%>
     <% end %>
-      <%= yield %>
+    <main class="container mx-auto mt-28 px-5 flex">
+    
+    <%= yield %>
     </main>
   </body>
 </html>
