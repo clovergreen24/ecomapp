@@ -40,8 +40,8 @@
             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               <%= admin_product.image.present? ? image_tag(admin_product.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50")%>
             </td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              <%= admin_product.name %>
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:underline" >
+              <%= link_to admin_product.name, [:admin, admin_product] %>
             </td>
             <td class="px-6 py-4">
               <%= number_to_currency(admin_product.price) %>
