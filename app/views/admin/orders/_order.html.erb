@@ -19,4 +19,15 @@
     <%= order.address %>
   </p>
 
+  <% if order.order_products.any? %>
+    <h2 class="font-medium text-lg mt-5">Products</h2>
+    <ul class="list-disc list-inside">
+      <% order.order_products.each do |order_product| %>
+        <li>
+          <%= order_product.product.image.present? ? image_tag(order_product.product.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %> - <%= order_product.product.name %> - <%= order_product.size %> - <%= order_product.quantity %> 
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
 </div>

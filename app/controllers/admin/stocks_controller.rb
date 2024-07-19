@@ -3,7 +3,8 @@ class Admin::StocksController < HomeController
 
   # GET /admin/stocks or /admin/stocks.json
   def index
-    @admin_stocks = Stock.all
+    @product = Product.find(params[:product_id])
+    @admin_stocks = @product.stocks
   end
 
   # GET /admin/stocks/1 or /admin/stocks/1.json
