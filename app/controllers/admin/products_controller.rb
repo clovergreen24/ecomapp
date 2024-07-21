@@ -55,6 +55,7 @@ class Admin::ProductsController < HomeController
     end
   end
 
+  
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -66,4 +67,5 @@ class Admin::ProductsController < HomeController
   def admin_product_params
     params.require(:product).permit(:name, :description, :price, :active, :image)
   end
+
 end

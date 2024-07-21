@@ -54,7 +54,9 @@
               <% end %>
             </td>
             <td class="px-6 py-4 text-right">
-              <%= link_to "Edit", edit_admin_product_path(admin_product), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+              <%= link_to "Edit", edit_admin_product_path(admin_product), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 text-blue-600 inline-block font-medium" %>
+              <%= link_to "Show", [:admin, admin_product], class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 text-blue-600 inline-block font-medium" %>
+              <%= link_to "Show stocks", admin_product_stocks_path(admin_product), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 text-blue-600 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>

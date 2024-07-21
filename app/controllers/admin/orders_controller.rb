@@ -26,6 +26,10 @@ class Admin::OrdersController < HomeController
 
     respond_to do |format|
       if @admin_order.save
+        @admin_order.order_products.each do |order_product|
+          @stock = order_product.product.stocks.where(size: order_product.size)
+          @stock.update(amount: @stock.amount - order_product.quantity)
+        end
         format.html { redirect_to admin_order_url(@admin_order), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @admin_order }
       else
