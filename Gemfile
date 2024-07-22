@@ -32,6 +32,7 @@ gem 'jbuilder'
 
 gem 'devise'
 gem 'standard'
+gem 'rack-cors'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
