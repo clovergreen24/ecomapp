@@ -1,0 +1,78 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Orders" %>
+
+  <div class="flex justify-between items-center mb-5">
+    <h1 class="font-bold text-3xl">Pending orders</h1>
+    <%= link_to "New order", new_admin_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Order ID</th>
+        <th scope="col" class="px-6 py-3">Customer Email</th>
+        <th scope="col" class="px-6 py-3">Total Price</th>
+        <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admin_unfulfilled_orders.each do |admin_order| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4">
+            <%= link_to admin_order.id, admin_order_path(admin_order), class: "underline" %>
+          </td>
+          <td class="px-6 py-4">
+            <%= admin_order.customer_email %>
+          </td>
+          <td class="px-6 py-4">
+            <%= number_to_currency(admin_order.total) %>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <%= link_to "Show", admin_order_path(admin_order), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+            <%= link_to "Edit", edit_admin_order_path(admin_order), class: "ml-2 font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="flex justify-between items-center mb-5 pt-8">
+    <h1 class="font-bold text-3xl">Completed orders</h1>
+  </div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Order ID</th>
+        <th scope="col" class="px-6 py-3">Customer Email</th>
+        <th scope="col" class="px-6 py-3">Total Price</th>
+        <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admin_fulfilled_orders.each do |admin_order| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4">
+            <%= link_to admin_order.id, admin_order_path(admin_order), class: "underline" %>
+          </td>
+          <td class="px-6 py-4">
+            <%= admin_order.customer_email %>
+          </td>
+          <td class="px-6 py-4">
+            <%= number_to_currency(admin_order.total) %>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <%= link_to "Show", admin_order_path(admin_order), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+            <%= link_to "Edit", edit_admin_order_path(admin_order), class: "ml-2 font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>

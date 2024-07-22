@@ -9,11 +9,17 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application' %>
+
   </head>
 
   <body>
+  <% if admin_signed_in? %>
+      <%= render "layouts/navbar"%>
+    <% end %>
     <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    
+    <%= yield %>
     </main>
   </body>
 </html>
