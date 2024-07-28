@@ -13,7 +13,7 @@ class Admin::OrdersController < HomeController
 
   # GET /admin/orders/new
   def new
-    @admin_order = Order.new
+    
   end
 
   # GET /admin/orders/1/edit
