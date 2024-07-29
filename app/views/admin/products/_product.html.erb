@@ -16,7 +16,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Category:</strong>
-    <%= product.category %>
+    <%= Category.find(product.category_id).name %>
   </p>
 
   <p class="my-5">

@@ -3,6 +3,7 @@
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
+    <%= @admin_category.image.present? ? image_tag(@admin_category.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %>
 
     <%= render @admin_category %>
 

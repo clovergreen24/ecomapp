@@ -4,12 +4,12 @@
   <% end %>
   <% content_for :title, "Products" %>
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Products</h1>
-    <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl text-pink-700">Products</h1>
+    <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-pink-600 text-white block font-medium" %>
   </div>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right text-pink-600 font-medium dark:text-pink-400">
+      <thead class="text-s text-pink-800 uppercase bg-pink-100 dark:bg-pink-700 dark:text-pink-400">
         <tr>
           <th scope="col" class="px-6 py-3">
             Image
@@ -39,18 +39,18 @@
       </thead>
       <tbody>
         <% @admin_products.each do |admin_product| %>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <tr class="bg-white border-b text-base dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4 whitespace-nowrap">
               <%= admin_product.image.present? ? image_tag(admin_product.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50")%>
             </td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:underline" >
+            <td class="px-6 py-4 font-semibold text-pink-600 whitespace-nowrap dark:text-white hover:underline" >
               <%= link_to admin_product.name, [:admin, admin_product] %>
             </td>
             <td class="px-6 py-4">
               <%= number_to_currency(admin_product.price) %>
             </td>
             <td class="px-6 py-4">
-              <%= admin_product.category %>
+              <%= Category.find(admin_product.category_id).name %>
             </td>
             <td class="px-6 py-4">
               <% if admin_product.active %>
@@ -60,9 +60,9 @@
               <% end %>
             </td>
             <td class="px-6 py-4 text-right">
-              <%= link_to "Edit", edit_admin_product_path(admin_product), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 text-blue-600 inline-block font-medium" %>
-              <%= link_to "Show", [:admin, admin_product], class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 text-blue-600 inline-block font-medium" %>
-              <%= link_to "Show stocks", admin_product_stocks_path(admin_product), class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 text-blue-600 inline-block font-medium" %>
+              <%= link_to "Edit", edit_admin_product_path(admin_product), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
+              <%= link_to "Show", [:admin, admin_product], class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
+              <%= link_to "Show stocks", admin_product_stocks_path(admin_product), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>
