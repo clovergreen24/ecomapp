@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :categories
     resources :orders
     resources :products do
       resources :stocks
@@ -10,9 +11,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :orders
-      resources :products do
-        resources :stocks
-      end
+      resources :products
+      resources :stocks
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

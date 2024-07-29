@@ -1,0 +1,19 @@
+module Api
+  module V1
+    class StocksController < ApplicationController
+      before_action :set_client_product, only: %i[index show]
+      def index
+        items = Stocks.all
+        render json: items
+      end
+
+      
+    
+      private
+
+      def set_client_product
+        @product = Product.find(params[:product_id])
+      end
+    end
+  end
+end

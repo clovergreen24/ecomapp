@@ -2,7 +2,7 @@ module Api
   module V1
     class ProductsController < ApplicationController
       def index
-        items = Product.all.map(&:as_json)
+        items = Product.where(active: true).map(&:as_json)
         render json: items
       end
 
