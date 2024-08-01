@@ -12,6 +12,7 @@ module Api
       end
 
       def show
+        
         item = Product.find(params[:id]).as_json
         render json: item
       end

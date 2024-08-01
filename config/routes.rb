@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   get '/api/v1/products/by_category/:id', to: 'api/v1/products#by_category'
+  get '/api/v1/products/:id', to: 'api/v1/products#show'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
