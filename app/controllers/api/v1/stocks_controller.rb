@@ -13,7 +13,7 @@ module Api
       private
 
       def set_client_product
-        @product = Product.find(params[:product_id])
+        @product = Product.find(params[:id])
       end
     end
   end
