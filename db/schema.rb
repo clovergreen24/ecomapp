@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_29_191109) do
 
   create_table "orders", force: :cascade do |t|
     t.string "customer_email"
-    t.boolean "fulfilled"
+    t.boolean "fulfilled", default: false
     t.integer "total"
     t.string "address"
     t.datetime "created_at", null: false

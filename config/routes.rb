@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :orders
       resources :products
       resources :stocks
+      resources :csrf_tokens, only: [:index]
     end
   end
 
