@@ -13,17 +13,29 @@ module Api
       end
 
       def create
-        
-        @client_order = Order.new(client_order_params)
-    
-        respond_to do |format|
-          if @client_order.save
-            format.html { render json: { notice: "Order was successfully created." }}
-            format.json { render :show, status: :created, location: @client_order }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @client_order.errors, status: :unprocessable_entity }
-          end
+        ActiveRecord::Base.transaction do
+          @client_order = Order.new(client_order_params)
+          @cartStocks = params[:cartStocks]
+
+            @client_order.checkStock(@cartStocks) #I check for the stock of each item, can raise rollback
+            
+              if @client_order.save
+                @cartStocks.each do |stock| #I create the order products and reduce the stock
+                  @order_product = OrderProduct.new(order_id: @client_order[:id], product_id: stock[:product_id], size: stock[:size], quantity: stock[:amount])
+                  unless @order_product.save
+                    raise ActiveRecord::Rollback, "Error creating the order product"
+                  end
+                  @stock = Stock.find_by(id: stock[:id])
+                  @stock.reduceStock(stock[:amount]) #can raise rollback
+                end
+                render json: { notice: "Order was successfully created." }
+              else
+                raise ActiveRecord::Rollback, "Error creating the order"
+              end
+        rescue ActiveRecord::Rollback => e
+          render json: { error: e.message }, status: :unprocessable_entity
+        rescue => e
+          render json: { error: "An unexpected error occurred: #{e.message}" }, status: :unprocessable_entity
         end
       end
 
