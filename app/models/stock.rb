@@ -7,4 +7,11 @@ class Stock < ApplicationRecord
       raise ActiveRecord::Rollback, "Error reducing the stock"
     end
   end
+
+  def increaseStock(amount)
+    self[:amount] += amount
+    unless self.save
+      raise ActiveRecord::Rollback, "Error increasing the stock"
+    end
+  end
 end

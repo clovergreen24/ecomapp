@@ -54,8 +54,14 @@ class Admin::OrdersController < HomeController
 
   # DELETE /admin/orders/1 or /admin/orders/1.json
   def destroy
+    unless @admin_order.fulfilled #if the order hasnt been delievered yet, the stock will be increased
+      @admin_order.order_products.each do |order_product|
+        @stock = order_product.product.stocks.where(size: order_product.size)
+        @stock = Stock.find(@stock.ids[0])
+        @stock.increaseStock(order_product.quantity)
+      end
+    end
     @admin_order.destroy
-
     respond_to do |format|
       format.html { redirect_to admin_orders_url, notice: "Order was successfully destroyed." }
       format.json { head :no_content }
