@@ -10,4 +10,8 @@ class Product < ApplicationRecord
     def as_json(options = {})
         super(options).merge(image_url: image.attached? ? Rails.application.routes.url_helpers.url_for(image) : nil)
     end
+
+    def noStock
+        stocks.sum(:amount) == 0
+    end
 end

@@ -1,17 +1,19 @@
 <div id="<%= dom_id stock %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Size:</strong>
+  <h1 class="font-bold text-3xl text-pink-700">Stock #<%= stock.id %></h1>
+  <div class="flex text-pink-600 my-5">
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Size:</strong>
     <%= stock.size %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Amount:</strong>
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Amount:</strong>
     <%= stock.amount %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Product:</strong>
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Product ID:</strong>
     <%= stock.product_id %>
   </p>
-
+  </div>
 </div>

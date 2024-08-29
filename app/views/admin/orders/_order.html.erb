@@ -1,33 +1,40 @@
 <div id="<%= dom_id order %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Customer email:</strong>
+  
+    <h1 class="font-bold text-3xl text-pink-700">Order #<%= order.id %></h1>
+    
+  <div class="flex text-pink-600 my-5">
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700 ">Customer email:</strong>
     <%= order.customer_email %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fulfilled:</strong>
-    <%= order.fulfilled %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Total:</strong>
+  <p class="mr-5">
+  <strong class="block font-semibold mb-1 text-pink-700">Total:</strong>
     <%= order.total %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Address:</strong>
+  <p class="mr-5">
+  <strong class="block font-semibold mb-1 text-pink-700">Address:</strong>
     <%= order.address %>
   </p>
-
+  <p class="mr-5">
+  <strong class="block font-semibold mb-1 text-pink-700">Fulfilled:</strong>
+    <%= order.fulfilled %>
+  </p>
+  </div>
   <% if order.order_products.any? %>
-    <h2 class="font-medium text-lg mt-5">Products</h2>
-    <ul class="list-disc list-inside">
+    <h1 class="font-bold text-2xl text-pink-700 mb-2">Order's products</h1>
+    <div class="flex items-center text-pink-600 font-medium bg-pink-100 rounded">
       <% order.order_products.each do |order_product| %>
-        <li>
-          <%= order_product.product.image.present? ? image_tag(order_product.product.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %> - <%= order_product.product.name %> - <%= order_product.size %> - <%= order_product.quantity %> 
-        </li>
+        
+          <div class="p-2">
+            <%= order_product.product.image.present? ? image_tag(order_product.product.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %>
+          </div>
+          
+          <%= order_product.product.name %> - Size: <%= order_product.size %> - Amount: <%= order_product.quantity %> 
+        
       <% end %>
-    </ul>
+    </div>
   <% else %>
     <p class="my-5">No products</p>
   <% end %>

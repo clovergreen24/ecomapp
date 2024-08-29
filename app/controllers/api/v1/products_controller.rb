@@ -7,8 +7,11 @@ module Api
       end
 
       def by_category
-        items = Product.where(active: true, category_id: params[:id]).map(&:as_json)
-        render json: items
+        items = Product.where(active: true, category_id: params[:id])
+        no_stock, stock = items.partition {|item| item.noStock }
+        products = stock,no_stock
+        products.map(&:as_json)
+        render json: products
       end
 
       def show

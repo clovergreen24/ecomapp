@@ -6,7 +6,7 @@
     <h1 class="font-bold text-3xl text-pink-700">Pending orders</h1>
   </div>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-  <table class="w-full text-sm text-left rtl:text-right text-pink-600 dark:text-gray-400">
+  <table class="w-full text-sm text-left font-medium rtl:text-right text-pink-600 dark:text-gray-400">
     <thead class="text-s text-pink-800 uppercase bg-pink-100 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="px-6 py-3">Order ID</th>
@@ -28,8 +28,8 @@
             <%= number_to_currency(admin_order.total) %>
           </td>
           <td class="px-6 py-4 text-right">
-            <%= link_to "Show", admin_order_path(admin_order), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
             <%= link_to "Edit", edit_admin_order_path(admin_order), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
+            <%= link_to "Show", admin_order_path(admin_order), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
           </td>
         </tr>
       <% end %>
@@ -41,7 +41,7 @@
     <h1 class="font-bold text-3xl text-pink-700">Completed orders</h1>
   </div>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-  <table class="w-full text-sm text-left rtl:text-right text-pink-600 dark:text-gray-400">
+  <table class="w-full text-sm text-left font-medium rtl:text-right text-pink-600 dark:text-gray-400">
     <thead class="text-s text-pink-800 uppercase bg-pink-100 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="px-6 py-3">Order ID</th>
@@ -53,8 +53,8 @@
     <tbody>
       <% @admin_fulfilled_orders.each do |admin_order| %>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <td class="px-6 py-4 text-pink-600">
-            <%= link_to admin_order.id, admin_order_path(admin_order), class: "underline" %>
+          <td class="px-6 py-4 text-pink-600 font-semibold">
+            <%= link_to admin_order.id, admin_order_path(admin_order), class: "hover:underline" %>
           </td>
           <td class="px-6 py-4">
             <%= admin_order.customer_email %>
@@ -63,8 +63,8 @@
             <%= number_to_currency(admin_order.total) %>
           </td>
           <td class="px-6 py-4 text-right">
-            <%= link_to "Show", admin_order_path(admin_order), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
             <%= link_to "Edit", edit_admin_order_path(admin_order), class: "ml-2 ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
+            <%= link_to "Show", admin_order_path(admin_order), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
           </td>
         </tr>
       <% end %>
