@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get '/api/v1/products/by_category/:id', to: 'api/v1/products#by_category'
   get '/api/v1/products/:id', to: 'api/v1/products#show'
+  get '/api/v1/stocks/available_stock/:stocklist', to: 'api/v1/stocks#availableStock'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
