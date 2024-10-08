@@ -1,9 +1,10 @@
 class Admin::StocksController < HomeController
   before_action :set_admin_stock, only: %i[ show edit update destroy ]
-  before_action :set_admin_product, only: %i[ index new edit]
+  before_action :set_admin_product, only: %i[ show edit update destroy new index]
 
   # GET /admin/stocks or /admin/stocks.json
   def index
+    
     @admin_stocks_out = @product.stocks.where("amount = 0")
     @admin_stocks = @product.stocks.where("amount > 0")
   end
@@ -19,10 +20,12 @@ class Admin::StocksController < HomeController
 
   # GET /admin/stocks/1/edit
   def edit
+
   end
 
   # POST /admin/stocks or /admin/stocks.json
   def create
+    @product = Product.find(params[:product_id])
     @admin_stock = @product.stocks.new(admin_stock_params)
 
     respond_to do |format|
@@ -65,12 +68,14 @@ class Admin::StocksController < HomeController
       @admin_stock = Stock.find(params[:id])
     end
 
+    def set_admin_product
+      @product = Product.find(params[:product_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def admin_stock_params
       params.require(:stock).permit(:size, :amount)
     end
 
-    def set_admin_product
-      @product = Product.find(params[:product_id])
-    end
+    
 end

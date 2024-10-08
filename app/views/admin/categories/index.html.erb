@@ -1,0 +1,48 @@
+<div class="w-full">
+
+  <% content_for :title, "Categories" %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-3xl text-pink-700">Categories</h1>
+    <%= link_to "New category", new_admin_category_path, class: "rounded-lg py-3 px-5 bg-pink-600 text-white block font-medium" %>
+  </div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+    <table class="w-full text-left rtl:text-right text-pink-600 dark:text-gray-400 font-medium">
+      <thead class="text-sm text-pink-800 uppercase bg-pink-100 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Image
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Category name
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Description
+          </th>
+          <th scope="col" class="px-6 py-3">
+            
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admin_categories.each do |admin_category| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <%= admin_category.image.present? ? image_tag(admin_category.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50")%>
+            </td>
+            <td class="px-6 py-4 font-semibold text-pink-600 whitespace-nowrap dark:text-white hover:underline" >
+              <%= link_to admin_category.name, [:admin, admin_category] %>
+            </td>
+            <td class="px-6 py-4">
+              <%= admin_category.description %>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <%= link_to "Edit", edit_admin_category_path(admin_category), class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
+              <%= link_to "Show", [:admin, admin_category], class: "ml-2 rounded-lg py-3 px-5 bg-pink-200 text-pink-600 inline-block font-medium" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

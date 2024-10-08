@@ -3,8 +3,8 @@ class Admin::OrdersController < HomeController
 
   # GET /admin/orders or /admin/orders.json
   def index
-    @admin_unfulfilled_orders = Order.where(fulfilled: false)
-    @admin_fulfilled_orders = Order.where(fulfilled: true)
+    @admin_unfulfilled_orders = Order.where(fulfilled: false).order(created_at: :desc)
+    @admin_fulfilled_orders = Order.where(fulfilled: true).order(updated_at: :desc)
   end
 
   # GET /admin/orders/1 or /admin/orders/1.json
@@ -13,7 +13,7 @@ class Admin::OrdersController < HomeController
 
   # GET /admin/orders/new
   def new
-    @admin_order = Order.new
+    
   end
 
   # GET /admin/orders/1/edit
@@ -54,8 +54,14 @@ class Admin::OrdersController < HomeController
 
   # DELETE /admin/orders/1 or /admin/orders/1.json
   def destroy
+    unless @admin_order.fulfilled #if the order hasnt been delievered yet, the stock will be increased
+      @admin_order.order_products.each do |order_product|
+        @stock = order_product.product.stocks.where(size: order_product.size)
+        @stock = Stock.find(@stock.ids[0])
+        @stock.increaseStock(order_product.quantity)
+      end
+    end
     @admin_order.destroy
-
     respond_to do |format|
       format.html { redirect_to admin_orders_url, notice: "Order was successfully destroyed." }
       format.json { head :no_content }

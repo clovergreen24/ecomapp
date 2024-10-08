@@ -1,22 +1,32 @@
 <div id="<%= dom_id product %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+  <h1 class="font-bold text-3xl text-pink-700">Product #<%= product.id %></h1>
+  <div class="flex text-pink-600 my-5">
+    <p class="mr-5">
+      <%= product.image.present? ? image_tag(product.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %>
+    </p>
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Name:</strong>
     <%= product.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Description:</strong>
     <%= product.description %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Price:</strong>
     <%= product.price %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Active:</strong>
-    <%= product.active %>
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Category:</strong>
+    <%= Category.find(product.category_id).name %>
   </p>
 
+  <p class="mr-5">
+    <strong class="block font-semibold mb-1 text-pink-700">Active:</strong>
+    <%= product.active %>
+  </p>
+  </div>
 </div>
